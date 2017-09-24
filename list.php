@@ -5,7 +5,7 @@
 
 	$todo = new PDO('mysql:host=localhost;dbname=global;charset=utf8', $username, $password);
 
-	$sql_query = 'SELECT id, description, is_done, date_added FROM global.tasks';
+	$sql_query = 'SELECT id, description, is_done, date_added FROM tasks';
 	$stm = $todo->prepare($sql_query);
 	$stm->execute();
 
@@ -15,7 +15,11 @@
 		$extracted[] = $row;
 	}
 
-	$message = $_GET['m'];	
+	if (isset($_GET['m'])) {
+		$message = $_GET['m'];	
+	} else {
+		$message = '';
+	}
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +47,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="#" class="navbar-brand">TODO | List</a>
+				<a href="index.php" class="navbar-brand">TODO | List</a>
 
 			</div>
 			<div class="navbar-collapse navbar-top collapse">
