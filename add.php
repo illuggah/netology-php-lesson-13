@@ -5,7 +5,7 @@
 
 	$todo = new PDO('mysql:host=localhost;dbname=global;charset=utf8', $username, $password);
 
-	$sql_query = 'INSERT INTO global.tasks (description, is_done, date_added) VALUES (?, 0, now())';
+	$sql_query = 'INSERT INTO tasks (description, is_done, date_added) VALUES (?, 0, now())';
 	$stm = $todo->prepare($sql_query);
 	$stm->execute([$_POST['description']]);
 
